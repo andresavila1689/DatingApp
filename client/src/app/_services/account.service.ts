@@ -4,7 +4,7 @@ import { ReplaySubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from '../_models/user';
 
-// Services are injectable and are singleton, contrast to components, these are ideal for making HTTP requests to the server
+// Services are injectable and are singleton, contrast to components, these are ideal for making HTTP requests to the server and share information between components
 @Injectable({
   providedIn: 'root'
 })
@@ -20,7 +20,7 @@ export class AccountService {
       map((user: User) => {
         if (user) {
           localStorage.setItem('user', JSON.stringify(user));
-          this.currentUserSource.next(user);
+          this.currentUserSource.next(user); 
         }
       })
     );
