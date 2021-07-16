@@ -1,0 +1,29 @@
+<div class="container">
+    <h4>Internal server error - refreshing the page will make the error disappear!</h4>
+    
+    <ng-container *ngIf="error">
+        <h5 class="text-danger">Error: {{error.message}}</h5>
+        <p class="font-weight-bold">Note: If you are seeing this then Angular is probably not to blame</p>
+        <p>What to do next?</p>
+        <ol>
+            <li>Open the dev tools</li>
+            <li>Inspect the network tab</li>
+            <li>Check the failing request</li>
+            <li>Examine the request URL - make sure it is correct</li>
+            <li>Reproduce the error in Postman - if we see the same response, then the issue is not with Angular</li>
+        </ol>
+
+        <p>Following is the stack trace - this is where your investigation should start!</p>
+        <code class="mt-5" style="background-color: whitesmoke;">
+            {{error.details}}
+        </code>
+    </ng-container>
+    
+    <button class="btn btn-info btn-lg" [routerLink]="['/members']" routerLinkActive="router-link-active" *ngIf="accountService.currentUser$ | async">
+        Return to members page
+    </button>
+
+    <button class="btn btn-info btn-lg" [routerLink]="['/']" routerLinkActive="router-link-active" *ngIf="(accountService.currentUser$ | async) == null">
+        Return to home page
+    </button>
+</div>
